@@ -1,10 +1,11 @@
 # -- Pygame Game Template -- #
-
 import pygame
 import sys
 import config # Import the config module 
+
 def init_game (): 
     pygame.init()
+    pygame.font.init() #initialize fonts here
     screen = pygame.display.set_mode((config.WINDOW_WIDTH, config.WINDOW_HEIGHT)) # Use constants from config
     pygame.display.set_caption(config.TITLE)
     return screen
@@ -19,13 +20,59 @@ def handle_events ():
              return False
     return True
 
+# --- Functions ---#
+
+def draw_text(screen, text, font_size, font_name, color, position, italic=False, bold = False, anti_aliased = True):
+   if font_name:
+      font = pygame.font.Font(font_name, font_size)
+   else: 
+      font = pygame.font.Font(None, font_size)
+
+   font.set_bold(bold)
+   font.set_italic(italic)
+
+   text_surface = font.render(text, True, color)
+   screen.blit(text_surface, (x, y))
+
+
+
+
+
+
 def main():
    screen = init_game()
    clock = pygame.time.Clock() # Initialize the clock here
+
+   # --- Define Properties ---#
+   font_name1 = "FreeMono.ttf"
+   font_color1 = config.RED
+   font_color2 = config.ORANGE
+   font_color3 = config.SKY_BLUE
+   font_size_normal = 36
+   font_size_bold_ital = 30
+   font_size_custom = 48 
+
+   # -- Use True Type Font --#
+   font_name_ttf = "BebasNeue-Regular.ttf"
+
+   #-- Define X,Y Corrdinate(top left) (stamp) --#
+   text_pos1 = [50, 50]
+   text_pos2 = [150, 150]
+   text_pos3 = [350, 350]
+
    running = True
    while running:
       running = handle_events()
       screen.fill(config.WHITE) # Use color from config
+
+      #-- Text One --#
+      draw_text(screen, "Hello, Pygame!", font_size_normal, font_name1, font_color1, text_pos1, italic=True)
+
+      #-- Text Two --#
+      draw_text(screen, "This text is bolded and italic!", font_size_bold_ital, font_name_ttf, font_color2, text_pos2, bold=True, italic=True)
+
+
+
       pygame.display.flip()
 
       # -- Limit the frame rate to the specified frames per second (FPS) -- #
