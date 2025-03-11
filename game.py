@@ -22,7 +22,7 @@ def handle_events ():
 
 # --- Functions ---#
 
-def draw_text(screen, text, font_size, font_name, color, position, italic=False, bold = False, anti_aliased = True):
+def draw_text(screen, text, font_size, font_name, color, position, anti_aliased = True, bold = False, italic=False):
    if font_name:
       font = pygame.font.Font(font_name, font_size)
    else: 
@@ -30,9 +30,9 @@ def draw_text(screen, text, font_size, font_name, color, position, italic=False,
 
    font.set_bold(bold)
    font.set_italic(italic)
-
+   
    text_surface = font.render(text, True, color)
-   screen.blit(text_surface, (x, y))
+   screen.blit(text_surface, position)
 
 
 
@@ -44,7 +44,7 @@ def main():
    clock = pygame.time.Clock() # Initialize the clock here
 
    # --- Define Properties ---#
-   font_name1 = "FreeMono.ttf"
+   font_name1 = 'c:\Fonts\RobotoMono-VariableFont_wght.ttf'
    font_color1 = config.RED
    font_color2 = config.ORANGE
    font_color3 = config.SKY_BLUE
@@ -53,7 +53,7 @@ def main():
    font_size_custom = 48 
 
    # -- Use True Type Font --#
-   font_name_ttf = "BebasNeue-Regular.ttf"
+   font_name_ttf = 'c:\Fonts\BebasNeue-Regular.ttf'
 
    #-- Define X,Y Corrdinate(top left) (stamp) --#
    text_pos1 = [50, 50]
@@ -70,8 +70,6 @@ def main():
 
       #-- Text Two --#
       draw_text(screen, "This text is bolded and italic!", font_size_bold_ital, font_name_ttf, font_color2, text_pos2, bold=True, italic=True)
-
-
 
       pygame.display.flip()
 
