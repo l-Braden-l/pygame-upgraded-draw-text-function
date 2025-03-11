@@ -63,13 +63,16 @@ def main():
    running = True
    while running:
       running = handle_events()
-      screen.fill(config.WHITE) # Use color from config
+      screen.fill(config.BLACK) # Use color from config
 
       #-- Text One --#
       draw_text(screen, "Hello, Pygame!", font_size_normal, font_name1, font_color1, text_pos1, italic=True)
 
       #-- Text Two --#
       draw_text(screen, "This text is bolded and italic!", font_size_bold_ital, font_name_ttf, font_color2, text_pos2, bold=True, italic=True)
+
+      #-- Text Two --#
+      draw_text(screen, "This text is bolded!", font_size_custom, font_name_ttf, font_color3, text_pos3, bold=True)
 
       pygame.display.flip()
 
